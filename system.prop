@@ -1,0 +1,8 @@
+#
+# system.prop for goya
+#
+
+ro.config.used_hw_vsync=0
+ro.lcd_brightness=170
+ro.lcd_min_brightness=30
+ro.sf.hwrotation=270
