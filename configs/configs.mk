@@ -1,4 +1,6 @@
 # All configs
+LOCAL_PATH := device/samsung/goya-common/configs
+
 $(call inherit-product, $(LOCAL_PATH)/audio/audio.mk)
 $(call inherit-product, $(LOCAL_PATH)/gps/gps.mk)
 $(call inherit-product, $(LOCAL_PATH)/graphics/graphics.mk)
