@@ -39,7 +39,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 $(call inherit-product, device/samsung/goya-common/configs/configs.mk)
 
 # Rootdir
-# TODO: add this in device tree
+# TODO: rootdir
 #PRODUCT_COPY_FILES += \
 #	device/samsung/goya-common/rootdir/fstab.pxa988:root/fstab.pxa988  \
 #	device/samsung/goya-common/rootdir/init.pxa988.rc:root/init.pxa988.rc \

@@ -70,7 +70,8 @@ COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DMR1_AUDIO_BLOB
 ENABLE_WEBGL := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/goya-common/rootdir/fstab.pxa988
+# TODO: rootdir
+#TARGET_RECOVERY_FSTAB := device/samsung/goya-common/rootdir/fstab.pxa988
 RECOVERY_FSTAB_VERSION := 2
 BOARD_RECOVERY_SWIPE := true
 BOARD_USES_MMCUTILS := true
@@ -162,7 +163,7 @@ SENSORS_NEED_SETRATE_ON_ENABLE := true
 VSYNC_EVENT_PHASE_OFFSET_NS := 0
 BOARD_USE_BGRA_8888 := true
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/samsung/goya-common/configs/egl.cfg
+BOARD_EGL_CFG := device/samsung/goya-common/configs/graphics/egl.cfg
 
 TARGET_HARDWARE_3D := false
 
