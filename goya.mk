@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-# TODO: egl
-
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
@@ -36,9 +34,8 @@ PRODUCT_LOCALES += mdpi
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp 
 
-# Graphics config
-PRODUCT_COPY_FILES += \
-    device/samsung/goya-common/configs/gfx.cfg:system/etc/gfx.cfg 
+# Configuration files
+$(call inherit-product, device/samsung/goya-common/configs/configs.mk)
 
 # Rootdir
 PRODUCT_COPY_FILES += \
@@ -81,28 +78,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml 
-
-# Sensor
-PRODUCT_COPY_FILES += \
-	device/samsung/goya-common/configs/sensor/sensor_config.xml:system/etc/sensor_config.xml \
-	device/samsung/goya-common/configs/sensor/param.dat:system/etc/param.dat 
-
-# GPS
-PRODUCT_COPY_FILES += \
-    device/samsung/goya-common/configs/gps/gps.conf:system/etc/gps.conf \
-	device/samsung/goya-common/configs/gps/mrvl_agps_default.conf:system/etc/mrvl_agps_default.conf \
-    device/samsung/goya-common/configs/gps/mrvl_gps_platform.conf:system/etc/mrvl_gps_platform.conf 
-
-# Media configs
-PRODUCT_COPY_FILES += \
-    device/samsung/goya-common/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
-    device/samsung/goya-common/configs/media/media_profiles.xml:system/etc/media_profiles.xml
-
-# Audio configs
-PRODUCT_COPY_FILES += \
-    device/samsung/goya-common/configs/audio/asound.conf:system/etc/asound.conf \
-	device/samsung/goya-common/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
-    device/samsung/goya-common/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 # Misc
 PRODUCT_PACKAGES += \
