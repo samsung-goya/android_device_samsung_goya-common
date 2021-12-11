@@ -139,23 +139,24 @@ MRVL_WIRELESS_DAEMON_API := true
 # Sensors 
 SENSORS_NEED_SETRATE_ON_ENABLE := true
 
-# SElinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/goya-common/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    device.te \
-    dhcp.te \
-    file.te \
-    init.te \
-    mediaserver.te \
-    netmgrd.te \
-    rild.te \
-    secril.te \
-    system.te \
-    ueventd.te \
-    wpa_supplicant.te
+# SELinux
+# TODO
+#BOARD_SEPOLICY_DIRS += \
+#    device/samsung/goya-common/sepolicy
+#
+#BOARD_SEPOLICY_UNION += \
+#    file_contexts \
+#    device.te \
+#    dhcp.te \
+#    file.te \
+#    init.te \
+#    mediaserver.te \
+#    netmgrd.te \
+#    rild.te \
+#    secril.te \
+#    system.te \
+#    ueventd.te \
+#    wpa_supplicant.te
 
 # Graphics
 VSYNC_EVENT_PHASE_OFFSET_NS := 0

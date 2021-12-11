@@ -1,5 +1,5 @@
 # GPS files configuration
-LOCAL_PATH := device/samsung/goya-common/configs/gps
+LOCAL_PATH := device/samsung/goya-common/configs/wireless/gps
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/gps.conf:system/etc/gps.conf \

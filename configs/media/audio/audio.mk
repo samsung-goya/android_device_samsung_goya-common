@@ -1,5 +1,5 @@
 # Audio files configuration
-LOCAL_PATH := device/samsung/goya-common/configs/audio
+LOCAL_PATH := device/samsung/goya-common/configs/media/audio
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/asound.conf:system/etc/asound.conf \

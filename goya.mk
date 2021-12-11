@@ -23,7 +23,8 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 PRODUCT_CHARACTERISTICS := tablet
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += device/samsung/goya-common/overlay
+# TODO: add this in device tree
+#DEVICE_PACKAGE_OVERLAYS += device/samsung/goya-common/overlay
 
 # This device is MDPI.
 PRODUCT_AAPT_CONFIG := large mdpi hdpi xhdpi
@@ -38,12 +39,13 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 $(call inherit-product, device/samsung/goya-common/configs/configs.mk)
 
 # Rootdir
-PRODUCT_COPY_FILES += \
-	device/samsung/goya-common/rootdir/fstab.pxa988:root/fstab.pxa988  \
-	device/samsung/goya-common/rootdir/init.pxa988.rc:root/init.pxa988.rc \
-	device/samsung/goya-common/rootdir/init.pxa988.tel.rc:root/init.pxa988.tel.rc \
-	device/samsung/goya-common/rootdir/init.pxa988.usb.rc:root/init.pxa988.usb.rc  \
-	device/samsung/goya-common/rootdir/ueventd.pxa988.rc:root/ueventd.pxa988.rc 
+# TODO: add this in device tree
+#PRODUCT_COPY_FILES += \
+#	device/samsung/goya-common/rootdir/fstab.pxa988:root/fstab.pxa988  \
+#	device/samsung/goya-common/rootdir/init.pxa988.rc:root/init.pxa988.rc \
+#	device/samsung/goya-common/rootdir/init.pxa988.tel.rc:root/init.pxa988.tel.rc \
+#	device/samsung/goya-common/rootdir/init.pxa988.usb.rc:root/init.pxa988.usb.rc  \
+#	device/samsung/goya-common/rootdir/ueventd.pxa988.rc:root/ueventd.pxa988.rc 
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -54,9 +56,9 @@ PRODUCT_PACKAGES += \
 	charger_res_images
 
 # Keylayouts
-PRODUCT_COPY_FILES += \
-	device/samsung/goya-common/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl  \
-	device/samsung/goya-common/keylayout/pxa27x-keypad.kl:system/usr/keylayout/pxa27x-keypad.kl
+#PRODUCT_COPY_FILES += \
+#	device/samsung/goya-common/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl  \
+#	device/samsung/goya-common/keylayout/pxa27x-keypad.kl:system/usr/keylayout/pxal27x-keypad.kl
 	
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -95,9 +97,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.zygote.disable_gl_preload=true
 
 # WI-FI
-# TODO
-PRODUCT_COPY_FILES += \
-	device/samsung/goya-common/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
+#PRODUCT_COPY_FILES += \
+#	device/samsung/goya-common/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0 \

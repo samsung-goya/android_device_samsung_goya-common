@@ -1,0 +1,55 @@
+From 4df9c5f8993eb51ea40d9aeb57a0a6c9842d5601 Mon Sep 17 00:00:00 2001
+From: Dave <davemartinfsu@gmail.com>
+Date: Tue, 14 Oct 2014 13:22:59 -0400
+Subject: [PATCH] update to fix HWComposer
+
+---
+ graphics/java/android/graphics/ImageFormat.java | 8 ++++++++
+ opengl/java/android/opengl/EGL14.java           | 1 +
+ 2 files changed, 9 insertions(+)
+
+diff --git a/graphics/java/android/graphics/ImageFormat.java b/graphics/java/android/graphics/ImageFormat.java
+index 1bcfc18d22bf6..55305613ddac7 100644
+--- a/graphics/java/android/graphics/ImageFormat.java
++++ b/graphics/java/android/graphics/ImageFormat.java
+@@ -146,6 +146,8 @@
+      */
+     public static final int NV21 = 0x11;
+ 
++    public static final int I420 = 0x12;
++
+     /**
+      * YCbCr format used for images, which uses YUYV (YUY2) encoding format.
+      * This is an alternative format for camera preview images. Whether this
+@@ -153,6 +155,8 @@
+      * {@link android.hardware.Camera.Parameters#getSupportedPreviewFormats()}.
+      */
+     public static final int YUY2 = 0x14;
++ 
++    public static final int UYVY = 0x16;
+ 
+     /**
+      * Encoded formats. These are not necessarily supported by the hardware.
+@@ -232,6 +236,10 @@ public static int getBitsPerPixel(int format) {
+                 return 16;
+             case NV16:
+                 return 16;
++case I420:
++ return 12;
++case UYVY:
++ return 16;
+             case YUY2:
+                 return 16;
+             case YV12:
+diff --git a/opengl/java/android/opengl/EGL14.java b/opengl/java/android/opengl/EGL14.java
+index b93557d2ac836..c584a3d8aaf9b 100644
+--- a/opengl/java/android/opengl/EGL14.java
++++ b/opengl/java/android/opengl/EGL14.java
+@@ -144,6 +144,7 @@
+ public static final int EGL_DRAW                           = 0x3059;
+ public static final int EGL_READ                           = 0x305A;
+ public static final int EGL_CORE_NATIVE_ENGINE             = 0x305B;
++public static final int EGL_CONTEXT_FROM_HWRENDER = 0x4098;
+ 
+     native private static void _nativeClassInit();
+     static {
