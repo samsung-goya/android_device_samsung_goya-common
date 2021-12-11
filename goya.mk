@@ -32,76 +32,76 @@ PRODUCT_LOCALES += mdpi
 
 # System Properties for USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp 
+	persist.sys.usb.config=mtp 
 
 # Configuration files
 $(call inherit-product, device/samsung/goya-common/configs/configs.mk)
 
 # Rootdir
 PRODUCT_COPY_FILES += \
-    device/samsung/goya-common/rootdir/fstab.pxa988:root/fstab.pxa988  \
-    device/samsung/goya-common/rootdir/init.pxa988.rc:root/init.pxa988.rc \
-    device/samsung/goya-common/rootdir/init.pxa988.tel.rc:root/init.pxa988.tel.rc \
-    device/samsung/goya-common/rootdir/init.pxa988.usb.rc:root/init.pxa988.usb.rc  \
-    device/samsung/goya-common/rootdir/ueventd.pxa988.rc:root/ueventd.pxa988.rc 
+	device/samsung/goya-common/rootdir/fstab.pxa988:root/fstab.pxa988  \
+	device/samsung/goya-common/rootdir/init.pxa988.rc:root/init.pxa988.rc \
+	device/samsung/goya-common/rootdir/init.pxa988.tel.rc:root/init.pxa988.tel.rc \
+	device/samsung/goya-common/rootdir/init.pxa988.usb.rc:root/init.pxa988.usb.rc  \
+	device/samsung/goya-common/rootdir/ueventd.pxa988.rc:root/ueventd.pxa988.rc 
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger \
-    charger_res_images
+	charger \
+	charger_res_images
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    device/samsung/goya-common/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl  \
-    device/samsung/goya-common/keylayout/pxa27x-keypad.kl:system/usr/keylayout/pxa27x-keypad.kl
+	device/samsung/goya-common/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl  \
+	device/samsung/goya-common/keylayout/pxa27x-keypad.kl:system/usr/keylayout/pxa27x-keypad.kl
 	
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+	frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+	frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+	frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+	frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+	frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+	frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml 
+	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+	frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml 
 
 # Misc
 PRODUCT_PACKAGES += \
-    Torch \
-    com.android.future.usb.accessory 
+	Torch \
+	com.android.future.usb.accessory 
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=131072 \
-    ro.sf.lcd_density=240 \
-    ro.bq.gpu_to_cpu_unsupported=1 
+	ro.opengles.version=131072 \
+	ro.sf.lcd_density=240 \
+	ro.bq.gpu_to_cpu_unsupported=1 
 
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.zygote.disable_gl_preload=true
+	ro.zygote.disable_gl_preload=true
 
 # WI-FI
 # TODO
 PRODUCT_COPY_FILES += \
-    device/samsung/goya-common/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
+	device/samsung/goya-common/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15
+	wifi.interface=wlan0 \
+	wifi.supplicant_scan_interval=15
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -112,10 +112,10 @@ PRODUCT_PACKAGES += \
 
 # Product specific Packages
 PRODUCT_PACKAGES += \
-    rfkill \
-    libMarvellWireless \
-    MarvellWirelessDaemon \
-    libwpa_client 
+	rfkill \
+	libMarvellWireless \
+	MarvellWirelessDaemon \
+	libwpa_client 
 
 # Use the Dalvik VM specific for devices with 1024 MB of RAM
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
