@@ -39,13 +39,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 $(call inherit-product, device/samsung/goya-common/configs/configs.mk)
 
 # Rootdir
-# TODO: rootdir
-#PRODUCT_COPY_FILES += \
-#	device/samsung/goya-common/rootdir/fstab.pxa988:root/fstab.pxa988  \
-#	device/samsung/goya-common/rootdir/init.pxa988.rc:root/init.pxa988.rc \
-#	device/samsung/goya-common/rootdir/init.pxa988.tel.rc:root/init.pxa988.tel.rc \
-#	device/samsung/goya-common/rootdir/init.pxa988.usb.rc:root/init.pxa988.usb.rc  \
-#	device/samsung/goya-common/rootdir/ueventd.pxa988.rc:root/ueventd.pxa988.rc 
+$(call inherit-product, device/samsung/goya-common/rootdir/rootdir.mk)
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -55,11 +49,7 @@ PRODUCT_PACKAGES += \
 	charger \
 	charger_res_images
 
-# Keylayouts
-#PRODUCT_COPY_FILES += \
-#	device/samsung/goya-common/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl  \
-#	device/samsung/goya-common/keylayout/pxa27x-keypad.kl:system/usr/keylayout/pxal27x-keypad.kl
-	
+
 # Permissions
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -95,10 +85,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.zygote.disable_gl_preload=true
-
-# WI-FI
-#PRODUCT_COPY_FILES += \
-#	device/samsung/goya-common/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0 \
