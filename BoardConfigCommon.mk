@@ -37,13 +37,13 @@ LOCAL_CFLAGS += -DMR0_AUDIO_BLOB -DMR1_AUDIO_BLOB
 # Partition sizes checked from stock firmware
 
 # Boot image
-# Specified in device tree
-#TARGET_KERNEL_SOURCE := kernel/samsung/goyawifi
-#TARGET_KERNEL_CONFIG := goyawifi_defconfig
-#BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive androidboot.hardware=pxa988
-#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --board MRVL
-#BOARD_KERNEL_PAGESIZE := 2048
-#BOARD_KERNEL_BASE := 0x10008000
+# TODO: special goya3g configs
+TARGET_KERNEL_SOURCE := kernel/samsung/goyawifi
+TARGET_KERNEL_CONFIG := goyawifi_defconfig
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive androidboot.hardware=pxa988
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --board MRVL
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_BASE := 0x10008000
 
 # Update OTA
 BLOCK_BASED_OTA := false
