@@ -8,7 +8,7 @@ on init
 
     mkdir /preload 0771 system system
     mkdir /NVM 0775 system system
-    
+
     setprop ro.board.platform mrvl
     chmod 0701 /mnt/media_rw
     mkdir /mnt/shell/emulated 0700 shell shell
@@ -74,7 +74,7 @@ on init
 
     chown system system /sys/class/mdnie/mdnie/cabc
     chmod 0664 /sys/class/mdnie/mdnie/cabc
-    
+
     # for sd8xxx wifi and bluetooth power
     chown system system /sys/class/rfkill/rfkill0/state
     chown system system /sys/class/rfkill/rfkill1/state
@@ -136,7 +136,7 @@ on init
     chown system system /proc/driver/pm800_headset
 
     #lcd for dip channel
-    chmod 664 /sys/devices/platform/pxa168-fb.0/lcd    
+    chmod 664 /sys/devices/platform/pxa168-fb.0/lcd
     chown system system /sys/devices/platform/pxa168-fb.0/lcd
 
     chmod 440 /sys/devices/platform/pxa168-fb.0/power/runtime_status
@@ -144,7 +144,7 @@ on init
 
     #cpu&ddr for dip channel
     chmod 664 /sys/devices/platform/devfreq-ddr/devfreq/devfreq-ddr/min_freq
-    chmod 664 /sys/devices/platform/devfreq-ddr/devfreq/devfreq-ddr/max_freq   
+    chmod 664 /sys/devices/platform/devfreq-ddr/devfreq/devfreq-ddr/max_freq
     chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
     chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
     chown system system /sys/devices/platform/devfreq-ddr/devfreq/devfreq-ddr/min_freq
@@ -228,7 +228,7 @@ on post-fs
     chown system system /sys/devices/platform/galcore/gpu/gpu0/gpufreq/scaling_max_freq
     chown radio system /efs
     chmod 0771 /efs
-    
+
     symlink /dev/block/mmcblk0p7 /dev/block/param
 
 on post-fs-data
@@ -284,7 +284,7 @@ on post-fs-data
 # Create radio folder for IMEI file
     mkdir /data/misc/radio 0775 radio system
     chmod 0775 /data/misc/radio
-    
+
     mkdir /efs/imei 0775 system system
     chmod 0775 /efs/imei
 
@@ -301,12 +301,12 @@ on post-fs-data
     chmod 0775 /data/log
     chmod 0775 /data/anr
 
-    # save OMA DB, when upgrading from GB to ICS    
+    # save OMA DB, when upgrading from GB to ICS
     mkdir /data/system/databases 0771 system system
     copy /data/data/com.sec.android.providers.drm/databases/drmdatabase.db /data/system/databases/drmdatabase.db
     chown system system /data/system/databases/drmdatabase.db
     chmod 0774 /data/system/databases/drmdatabase.db	
-    
+
     # DRM directory creation
     mkdir /system/etc/security/.drm 0775
     chown root root /system/etc/security/.drm
@@ -351,7 +351,7 @@ on boot
 
     # NFC
     setprop ro.nfc.port "I2C"
-    chmod 0600 /dev/pn547    
+    chmod 0600 /dev/pn547
     chown nfc nfc /dev/pn547
 
 	setprop ro.opengles.version 131072
@@ -360,8 +360,8 @@ on boot
     chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 
 # Permissions for bluetooth
-    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"   
-    chown bluetooth bluetooth ro.bt.bdaddr_path 
+    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
+    chown bluetooth bluetooth ro.bt.bdaddr_path
 
 # Audio (Earjack) KSND
     chown system radio /sys/class/audio/earjack/select_jack
@@ -458,7 +458,7 @@ accelerometer/gyro
     chmod 0664 /sys/class/sensor_event/symlink/proximity_sensor/name
     chown system system /efs/prox_cal
     chmod 0666 /efs/prox_cal
-    
+
     symlink /dev/block/mmcblk0p8 /dev/block/param
 
 #for cts test
@@ -625,4 +625,3 @@ service sensord /system/bin/sensord
     class main
     user system
     group system
-    

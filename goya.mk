@@ -33,10 +33,7 @@ PRODUCT_LOCALES += mdpi
 
 # System Properties for USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp 
-
-# Configuration files
-$(call inherit-product, device/samsung/goya-common/configs/configs.mk)
+	persist.sys.usb.config=mtp
 
 # Rootdir
 $(call inherit-product, device/samsung/goya-common/rootdir/rootdir.mk)
@@ -69,18 +66,18 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-	frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml 
+	frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml
 
 # Misc
 PRODUCT_PACKAGES += \
 	Torch \
-	com.android.future.usb.accessory 
+	com.android.future.usb.accessory
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=131072 \
 	ro.sf.lcd_density=240 \
-	ro.bq.gpu_to_cpu_unsupported=1 
+	ro.bq.gpu_to_cpu_unsupported=1
 
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -102,7 +99,7 @@ PRODUCT_PACKAGES += \
 	rfkill \
 	libMarvellWireless \
 	MarvellWirelessDaemon \
-	libwpa_client 
+	libwpa_client
 
 # Use the Dalvik VM specific for devices with 1024 MB of RAM
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
