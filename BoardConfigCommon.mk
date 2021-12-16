@@ -63,7 +63,7 @@ TARGET_PROVIDES_INIT_TARGET_RC := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/goya-common/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/goya-common/configs/wireless/bluetooth
 BOARD_HAVE_BLUETOOTH_MRVL := true
 MRVL_WIRELESS_DAEMON_API := true
 BOARD_HAVE_BLUETOOTH_BCM := true
