@@ -38,8 +38,8 @@ LOCAL_CFLAGS += -DMR0_AUDIO_BLOB -DMR1_AUDIO_BLOB
 
 # Boot image
 # TODO: special goya3g configs
-TARGET_KERNEL_SOURCE := kernel/samsung/goyawifi
-TARGET_KERNEL_CONFIG := goyawifi_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/goya
+#TARGET_KERNEL_CONFIG := goyawifi_defconfig
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive androidboot.hardware=pxa988
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --board MRVL
 BOARD_KERNEL_PAGESIZE := 2048
