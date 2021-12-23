@@ -18,7 +18,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-#$(call inherit-product-if-exists, vendor/samsung/goyawifi/goyawifi-vendor.mk)
+# Get non-open-source specific aspects
+$(call inherit-product-if-exists, vendor/samsung/goya/goya-vendor.mk)
 
 PRODUCT_CHARACTERISTICS := tablet
 
