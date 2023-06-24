@@ -30,7 +30,6 @@ TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 COMMON_GLOBAL_CFLAGS += -DBOARD_EGL_NEEDS_LEGACY_FB
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
-
 # Boot image
 TARGET_KERNEL_SOURCE := kernel/samsung/goya
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive androidboot.hardware=pxa988
@@ -102,23 +101,6 @@ WIFI_SDIO_IF_DRIVER_MODULE_NAME := "mlan"
 WIFI_SDIO_IF_DRIVER_MODULE_ARG := ""
 MRVL_WIRELESS_DAEMON_API := true
 
-# SELinux
-BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    device.te \
-    dhcp.te \
-    file.te \
-    init.te \
-    mediaserver.te \
-    netmgrd.te \
-    rild.te \
-    secril.te \
-    system.te \
-    ueventd.te \
-    wpa_supplicant.te
-
 # Graphics
 ENABLE_HWC_GC_PATH := true
 USE_OPENGL_RENDERER := true
@@ -139,6 +121,22 @@ TARGET_FORCE_CPU_UPLOAD := true
 # Charging mode
 BOARD_LPM_BOOT_ARGUMENT_NAME := lpm_boot
 BOARD_LPM_BOOT_ARGUMENT_VALUE := 1
+
+# SELinux
+export BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
+BOARD_SEPOLICY_UNION += \
+    file_contexts \
+    device.te \
+    dhcp.te \
+    file.te \
+    init.te \
+    mediaserver.te \
+    netmgrd.te \
+    rild.te \
+    secril.te \
+    system.te \
+    ueventd.te \
+    wpa_supplicant.te
 
 # Camera
 USE_CAMERA_STUB := true
