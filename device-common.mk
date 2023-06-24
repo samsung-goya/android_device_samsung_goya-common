@@ -37,7 +37,13 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
 
 # Rootdir
-$(call inherit-product, device/samsung/goya-common/rootdir/rootdir.mk)
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/rootdir/fstab.pxa988:root/fstab.pxa988 \
+	$(LOCAL_PATH)/rootdir/init.pxa988.rc:root/init.pxa988.rc \
+	$(LOCAL_PATH)/rootdir/init.pxa988.sensor.rc:root/init.pxa988.sensor.rc \
+	$(LOCAL_PATH)/rootdir/init.pxa988.tel.rc:root/init.pxa988.tel.rc \
+	$(LOCAL_PATH)/rootdir/init.pxa988.usb.rc:root/init.pxa988.usb.rc \
+	$(LOCAL_PATH)/rootdir/ueventd.pxa988.rc:root/ueventd.pxa988.rc
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -46,7 +52,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_PACKAGES += \
 	charger \
 	charger_res_images
-
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -71,13 +76,12 @@ PRODUCT_COPY_FILES += \
 
 # Misc
 PRODUCT_PACKAGES += \
-	Torch \
 	com.android.future.usb.accessory
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=131072 \
-	ro.sf.lcd_density=240 \
+	ro.sf.lcd_density=170 \
 	ro.bq.gpu_to_cpu_unsupported=1
 
 # Dalvik
@@ -101,6 +105,48 @@ PRODUCT_PACKAGES += \
 	libMarvellWireless \
 	MarvellWirelessDaemon \
 	libwpa_client
+
+# Graphics configs
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/graphics/gfx.cfg:system/etc/gfx.cfg
+
+# Keylayouts
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/keylayouts/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl  \
+	$(LOCAL_PATH)/configs/keylayouts/pxa27x-keypad.kl:system/usr/keylayout/pxal27x-keypad.kl
+
+# Media
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
+	$(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
+
+# Audio
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/audio/asound.conf:system/etc/asound.conf \
+	$(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
+	$(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
+
+# Sensor
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/sensor/sensor_config.xml:system/etc/sensor_config.xml \
+	$(LOCAL_PATH)/configs/sensor/param.dat:system/etc/param.dat
+
+# Wi-Fi
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wpa_supplicant_overlay.conf \
+	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/p2p_supplicant_overlay.conf \
+	$(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
+
+# Bluetooth
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/bluetooth/iop_bt.db:system/etc/bluetooth/iop_bt.db \
+	$(LOCAL_PATH)/configs/bluetooth/iop_device_list.conf:system/etc/bluetooth/iop_device_list.conf
+
+# GPS
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
+	$(LOCAL_PATH)/configs/gps/mrvl_gps_platform.conf:system/etc/mrvl_gps_platform.conf \
+	$(LOCAL_PATH)/configs/gps/mrvl_agps_default.conf:system/etc/mrvl_agps_default.conf
 
 # Use the Dalvik VM specific for devices with 1024 MB of RAM
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)

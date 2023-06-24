@@ -1,6 +1,5 @@
-# General device tree for goya products
+# General device tree for goya serie
 
-## Known Supported Products
-
+## Supported devices
 - `goyawifi`
 - `goya3g` *(soon)*
