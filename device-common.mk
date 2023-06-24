@@ -23,9 +23,7 @@ $(call inherit-product-if-exists, vendor/samsung/goya/goya-vendor.mk)
 
 PRODUCT_CHARACTERISTICS := tablet
 
-# Overlay
-# TODO: add this in device tree
-#DEVICE_PACKAGE_OVERLAYS += device/samsung/goya-common/overlay
+LOCAL_PATH := device/samsung/goya-common
 
 # This device is MDPI.
 PRODUCT_AAPT_CONFIG := large mdpi hdpi xhdpi

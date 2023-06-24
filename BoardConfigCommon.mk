@@ -2,6 +2,8 @@
 # https://github.com/gr8nole/android_device_samsung_lt02wifi/blob/master/BoardConfig.mk
 # https://github.com/GalaxyTab4/android_device_samsung_degaswifi/blob/cm-12.1/BoardConfig.mk
 
+LOCAL_PATH := device/samsung/goya-common
+
 # Architecture
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
