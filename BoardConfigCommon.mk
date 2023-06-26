@@ -3,30 +3,16 @@
 # https://github.com/GalaxyTab4/android_device_samsung_degaswifi/blob/cm-12.1/BoardConfig.mk
 
 LOCAL_PATH := device/samsung/goya-common
+BOARD_VENDOR := samsung
 
-# Architecture
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := cortex-a9
-TARGET_BOARD_PLATFORM := mrvl
+include device/samsung/marvell-common/BoardConfigCommon.mk
 
-# Bootloader
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_RADIOIMAGE := true
+# Board
 TARGET_BOOTLOADER_BOARD_NAME := PXA986
-
-# MRVL hardware
-BOARD_USES_MRVL_HARDWARE := true
-MRVL_ION := true
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DNO_RGBX_8888
-TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 COMMON_GLOBAL_CFLAGS += -DBOARD_EGL_NEEDS_LEGACY_FB
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
@@ -36,9 +22,6 @@ BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive androidboot.hardware=pxa9
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --board MRVL
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE := 0x10008000
-
-# Update OTA
-BLOCK_BASED_OTA := false
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -144,7 +127,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_TS_MAKEUP := true
+COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
 
 # Blob configs
-COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
+COMMON_GLOBAL_CFLAGS += 
