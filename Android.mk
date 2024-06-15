@@ -27,4 +27,15 @@ LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter goya3g goyawifi,$(TARGET_DEVICE)),)
 include $(call all-makefiles-under,device/samsung/goya-common)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libGAL
+#LOCAL_MODULE_OWNER := samsung
+LOCAL_SRC_FILES := ../../../vendor/samsung/goya/proprietary/system/lib/libGAL.so
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+include $(BUILD_PREBUILT)
+
 endif
