@@ -19,7 +19,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/goya/goya-vendor.mk)
+$(call inherit-product, vendor/samsung/goya/goya-vendor.mk)
+
 
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -143,7 +144,7 @@ PRODUCT_COPY_FILES += \
 # GPS
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
-	$(LOCAL_PATH)/configs/gps/mrvl_gps_platform.conf:system/etc/mrvl_gps_platform.conf \
+#	$(LOCAL_PATH)/configs/gps/mrvl_gps_platform.conf:system/etc/mrvl_gps_platform.conf \
 	$(LOCAL_PATH)/configs/gps/mrvl_agps_default.conf:system/etc/mrvl_agps_default.conf
 
 # Use the Dalvik VM specific for devices with 1024 MB of RAM

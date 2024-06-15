@@ -70,6 +70,7 @@ BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/f_mass_storage/lun%d/file"
 
 # WiFi
+WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_HAVE_MARVELL_WIFI := true
 BOARD_WLAN_VENDOR := MRVL
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/sd8xxx.ko"
@@ -107,19 +108,19 @@ BOARD_LPM_BOOT_ARGUMENT_VALUE := 1
 
 # SELinux
 export BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    device.te \
-    dhcp.te \
-    file.te \
-    init.te \
-    mediaserver.te \
-    netmgrd.te \
-    rild.te \
-    secril.te \
-    system.te \
-    ueventd.te \
-    wpa_supplicant.te
+#BOARD_SEPOLICY_UNION += \
+#    file_contexts \
+#    device.te \
+#    dhcp.te \
+#    file.te \
+#    init.te \
+#    mediaserver.te \
+#    netmgrd.te \
+#    rild.te \
+#    secril.te \
+#    system.te \
+#    ueventd.te \
+#    wpa_supplicant.te
 
 # Camera
 USE_CAMERA_STUB := true
@@ -128,6 +129,3 @@ TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_TS_MAKEUP := true
 COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
-
-# Blob configs
-COMMON_GLOBAL_CFLAGS += 
