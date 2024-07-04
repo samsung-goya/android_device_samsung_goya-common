@@ -1,0 +1,66 @@
+From e36f0ea196ee403c9eda495ee3df5bc50b32bf5c Mon Sep 17 00:00:00 2001
+From: Dave <davemartinfsu@gmail.com>
+Date: Tue, 14 Oct 2014 13:11:28 -0400
+Subject: [PATCH] update to fix HWComposer
+
+---
+ include/hardware/hwcomposer.h    | 14 ++++++++++++++
+ include/hardware/hwcomposer_v0.h |  8 ++++++++
+ 2 files changed, 22 insertions(+)
+
+diff --git a/include/hardware/hwcomposer.h b/include/hardware/hwcomposer.h
+index d2c946a8..af1f030e 100644
+--- a/include/hardware/hwcomposer.h
++++ b/include/hardware/hwcomposer.h
+@@ -167,6 +167,13 @@ typedef struct hwc_layer_1 {
+             /* blending to apply during composition */
+             int32_t blending;
+ 
++#ifdef MRVL_HARDWARE
++ /* for HWC_BLENDING_NONE, alpha is not used.
++        * for HWC_BLENDING_PREMULT and HWC_BLENDING_COVERAGE, it is plane alpha value.
++        * for HWC_BLENDING_DIM, it is the alpha in source color (0,0,0,alpha). */
++ int32_t alpha;
++#endif
++
+             /* area of the source to consider, the origin is the top-left corner of
+              * the buffer. As of HWC_DEVICE_API_VERSION_1_3, sourceRect uses floats.
+              * If the h/w can't support a non-integer source crop rectangle, it should
+@@ -642,7 +649,14 @@ typedef struct hwc_composer_device_1 {
+     /*
+      * Reserved for future use. Must be NULL.
+      */
++#ifdef MRVL_HARDWARE
++    int (*fbPrePost)(struct hwc_composer_device_1* dev, buffer_handle_t buffer);
++    int (*stretchBlit)(struct hwc_composer_device_1 * dev, buffer_handle_t Dest, buffer_handle_t Source, hwc_rect_t * DestRect,hwc_rect_t * SourceRect,	uint32_t transform);
++    int (*getBackBuffer)(buffer_handle_t * backbuffer);
++    void* reserved_proc[1];
++#else
+     void* reserved_proc[4];
++#endif
+ 
+ } hwc_composer_device_1_t;
+ 
+diff --git a/include/hardware/hwcomposer_v0.h b/include/hardware/hwcomposer_v0.h
+index 473819b4..c1882d24 100644
+--- a/include/hardware/hwcomposer_v0.h
++++ b/include/hardware/hwcomposer_v0.h
+@@ -102,6 +102,13 @@ typedef struct hwc_layer {
+ 
+             /* blending to apply during composition */
+             int32_t blending;
++            
++#ifdef MRVL_HARDWARE
++            /* for HWC_BLENDING_NONE, alpha is not used.
++			 * for HWC_BLENDING_PREMULT and HWC_BLENDING_COVERAGE, it is plane alpha value.
++			 * for HWC_BLENDING_DIM, it is the alpha in source color (0,0,0,alpha). */
++            int32_t alpha;
++#endif
+ 
+             /* area of the source to consider, the origin is the top-left corner of
+              * the buffer */
+@@ -270,3 +277,4 @@ static inline int hwc_close(hwc_composer_device_t* device) {
+ /*****************************************************************************/
+ 
+ #endif /* ANDROID_INCLUDE_HARDWARE_HWCOMPOSER_V0_H */
++

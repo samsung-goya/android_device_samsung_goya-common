@@ -1,0 +1,128 @@
+From ab8345562d3adc2a8d246cdff3e242e9539721cc Mon Sep 17 00:00:00 2001
+From: Dave <davemartinfsu@gmail.com>
+Date: Tue, 14 Oct 2014 13:02:53 -0400
+Subject: [PATCH] update to fix HWComposer
+
+---
+ libs/binder/IPCThreadState.cpp                |  4 +++
+ .../DisplayHardware/HWComposer.cpp            | 29 ++++++++++++++++++-
+ .../DisplayHardware/HWComposer.h              |  3 ++
+ services/surfaceflinger/Layer.cpp             |  6 +++-
+ 4 files changed, 40 insertions(+), 2 deletions(-)
+
+diff --git a/libs/binder/IPCThreadState.cpp b/libs/binder/IPCThreadState.cpp
+index aaad1044367..cff543b99ad 100644
+--- a/libs/binder/IPCThreadState.cpp
++++ b/libs/binder/IPCThreadState.cpp
+@@ -366,6 +366,10 @@ extern "C" int _ZN7android14IPCThreadState13getCallingPidEv(IPCThreadState *stat
+     return state->getCallingPid();
+ }
+ 
++extern "C" int _ZN7android14IPCThreadState13getCallingUidEv(IPCThreadState *state) {
++ return state->getCallingUid();
++}
++
+ int IPCThreadState::getCallingPid() const
+ {
+     return mCallingPid;
+diff --git a/services/surfaceflinger/DisplayHardware/HWComposer.cpp b/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+index dd6865d6888..a4258a5cf13 100644
+--- a/services/surfaceflinger/DisplayHardware/HWComposer.cpp
++++ b/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+@@ -207,6 +207,9 @@ HWComposer::HWComposer(
+     mDebugForceFakeVSync = atoi(value);
+ 
+     bool needVSyncThread = true;
++#ifdef MRVL_HARDWARE
++ int mHw_vsync = 0;
++#endif
+ 
+     // Note: some devices may insist that the FB HAL be opened before HWC.
+     int fberr = loadFbHalModule();
+@@ -216,8 +219,10 @@ HWComposer::HWComposer(
+         // close FB HAL if we don't needed it.
+         // FIXME: this is temporary until we're not forced to open FB HAL
+         // before HWC.
++#ifdef MRVL_HARDWARE
+         framebuffer_close(mFbDev);
+         mFbDev = NULL;
++#endif
+     }
+ 
+     // If we have no HWC, or a pre-1.1 HWC, an FB dev is mandatory.
+@@ -261,7 +266,17 @@ HWComposer::HWComposer(
+         }
+ 
+         // don't need a vsync thread if we have a hardware composer
+-        needVSyncThread = false;
++#ifdef MRVL_HARDWARE
++ property_get("ro.config.used_hw_vsync", value, "0");
++ mHw_vsync = atoi(value);
++ if (mHw_vsync) {
++ needVSyncThread = false;
++ } else {
++ needVSyncThread = true;
++ }
++#else
++ needVSyncThread = false;
++#endif
+         // always turn vsync off when we start
+         if (hwcHasVsyncEvent(mHwc)) {
+             eventControl(HWC_DISPLAY_PRIMARY, HWC_EVENT_VSYNC, 0);
+@@ -1150,6 +1165,11 @@ class HWCLayerVersion0 : public Iterable<HWCLayerVersion0, hwc_layer_t> {
+     virtual void setBlending(uint32_t blending) {
+         getLayer()->blending = blending;
+     }
++#ifdef MRVL_HARDWARE
++ virtual void setAlpha(uint32_t alpha) {
++ getLayer()->alpha = alpha;
++ }
++#endif
+     virtual void setTransform(uint32_t transform) {
+         getLayer()->transform = transform;
+     }
+@@ -1273,6 +1293,13 @@ class HWCLayerVersion1 : public Iterable<HWCLayerVersion1, hwc_layer_1_t> {
+     virtual void setBlending(uint32_t blending) {
+         getLayer()->blending = blending;
+     }
++
++#ifdef MRVL_HARDWARE
++ virtual void setAlpha(uint32_t alpha) {
++ getLayer()->alpha = alpha;
++ }
++#endif
++
+     virtual void setTransform(uint32_t transform) {
+         getLayer()->transform = transform;
+     }
+diff --git a/services/surfaceflinger/DisplayHardware/HWComposer.h b/services/surfaceflinger/DisplayHardware/HWComposer.h
+index 26323230a2c..e0612d2d380 100644
+--- a/services/surfaceflinger/DisplayHardware/HWComposer.h
++++ b/services/surfaceflinger/DisplayHardware/HWComposer.h
+@@ -174,6 +174,9 @@ class HWComposer
+         virtual void setSkip(bool skip) = 0;
+         virtual void setAnimating(bool animating) = 0;
+         virtual void setBlending(uint32_t blending) = 0;
++#ifdef MRVL_HARDWARE
++ virtual void setAlpha(uint32_t alpha) = 0;
++#endif
+         virtual void setTransform(uint32_t transform) = 0;
+         virtual void setFrame(const Rect& frame) = 0;
+         virtual void setCrop(const FloatRect& crop) = 0;
+diff --git a/services/surfaceflinger/Layer.cpp b/services/surfaceflinger/Layer.cpp
+index 4def60af476..642538d9ae1 100644
+--- a/services/surfaceflinger/Layer.cpp
++++ b/services/surfaceflinger/Layer.cpp
+@@ -436,7 +436,11 @@ void Layer::setGeometry(
+     layer.setCrop(computeCrop(hw));
+     layer.setPlaneAlpha(s.alpha);
+ 
+-    Transform transform = computeBufferTransform(hw);
++#ifdef MRVL_HARDWARE
++ layer.setAlpha(s.alpha);
++#endif
++
++Transform transform = computeBufferTransform(hw);
+ 
+     // this gives us only the "orientation" component of the transform
+     const uint32_t orientation = transform.getOrientation();
